@@ -43,12 +43,14 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     /// <param name="xmlSerializer">Instance of the <see cref="IXmlSerializer"/> interface.</param>
     /// <param name="taskManager">Instance of the <see cref="ITaskManager"/> interface.</param>
     /// <param name="xtreamClient">Instance of the <see cref="IXtreamClient"/> interface.</param>
-    public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, ITaskManager taskManager, IXtreamClient xtreamClient)
+    /// <param name="proxyService">Instance of the <see cref="StreamProxyService"/>.</param>
+    public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, ITaskManager taskManager, IXtreamClient xtreamClient, StreamProxyService proxyService)
         : base(applicationPaths, xmlSerializer)
     {
         _instance = this;
         StreamService = new(xtreamClient);
         TaskService = new(taskManager);
+        ProxyService = proxyService;
     }
 
     /// <inheritdoc />
@@ -82,6 +84,11 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     /// </summary>
     public TaskService TaskService { get; init; }
 
+    /// <summary>
+    /// Gets the proxy service instance.
+    /// </summary>
+    public StreamProxyService ProxyService { get; init; }
+
     private static PluginPageInfo CreateStatic(string name) => new()
     {
         Name = name,
@@ -109,6 +116,8 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
             CreateStatic("XtreamSeries.js"),
             CreateStatic("XtreamVod.html"),
             CreateStatic("XtreamVod.js"),
+            CreateStatic("XtreamSecurity.html"),
+            CreateStatic("XtreamSecurity.js"),
         };
     }
 

@@ -206,6 +206,10 @@ const tabs = [
     href: tab('XtreamSeries'),
     name: 'Series',
   },
+  {
+    href: tab('XtreamSecurity'),
+    name: 'Sécurité',
+  },
 ];
 
 const setTabs = (index) => {

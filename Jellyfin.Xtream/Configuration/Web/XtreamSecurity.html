@@ -1,0 +1,77 @@
+<div id="XtreamSecurityPage" data-role="page" class="page type-interior pluginConfigurationPage withTabs"
+    data-require="emby-input,emby-button,emby-checkbox" data-controller="__plugin/XtreamSecurity.js">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="XtreamSecurityForm">
+                <h2>Paramètres de Sécurité</h2>
+
+                <div class="checkboxContainer checkboxContainer-withDescription">
+                    <label>
+                        <input type="checkbox" is="emby-checkbox" id="UseSecureProxy" name="UseSecureProxy" />
+                        <span>Utiliser le proxy sécurisé</span>
+                    </label>
+                    <div class="fieldDescription">
+                        Active le masquage des identifiants dans les URLs de stream. Fortement recommandé pour protéger
+                        vos credentials.
+                    </div>
+                </div>
+
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="TokenExpirationHours">Durée d'expiration des
+                        tokens (Heures)</label>
+                    <input id="TokenExpirationHours" name="TokenExpirationHours" type="number" is="emby-input" min="1"
+                        max="168" />
+                    <div class="fieldDescription">Durée de validité des tokens de stream. Par défaut : 24 heures.</div>
+                </div>
+
+                <h2>Limites et Performance</h2>
+
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="MaxConcurrentStreams">Nombre maximum de streams
+                        simultanés</label>
+                    <input id="MaxConcurrentStreams" name="MaxConcurrentStreams" type="number" is="emby-input"
+                        min="0" />
+                    <div class="fieldDescription">Nombre maximum de streams actifs simultanément (0 = illimité).</div>
+                </div>
+
+                <div class="checkboxContainer checkboxContainer-withDescription">
+                    <label>
+                        <input type="checkbox" is="emby-checkbox" id="EnableDetailedLogging"
+                            name="EnableDetailedLogging" />
+                        <span>Activer le logging détaillé</span>
+                    </label>
+                    <div class="fieldDescription">
+                        Active les logs détaillés pour le débogage. Peut impacter les performances.
+                    </div>
+                </div>
+
+                <div>
+                    <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                        <span>Sauvegarder</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="ProxyStats" style="margin-top: 30px;">
+                <h2>Statistiques du Proxy</h2>
+                <table>
+                    <tr>
+                        <td>Tokens actifs</td>
+                        <td id="ActiveTokens">-</td>
+                    </tr>
+                    <tr>
+                        <td>Dernière mise à jour</td>
+                        <td id="LastUpdate">-</td>
+                    </tr>
+                </table>
+                <button is="emby-button" id="RefreshStats" class="raised emby-button" style="margin-top: 10px;">
+                    <span>Actualiser</span>
+                </button>
+                <button is="emby-button" id="CleanTokens" class="raised emby-button"
+                    style="margin-top: 10px; margin-left: 10px;">
+                    <span>Nettoyer les tokens expirés</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

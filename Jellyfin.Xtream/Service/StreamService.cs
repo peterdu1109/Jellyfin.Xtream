@@ -392,6 +392,14 @@ public partial class StreamService(IXtreamClient xtreamClient)
             uri = $"{config.BaseUrl}/streaming/timeshift.php?username={config.Username}&password={config.Password}&stream={id}&start={startString}&duration={durationMinutes}";
         }
 
+        // Utiliser le proxy sécurisé si activé
+        if (config.UseSecureProxy && Plugin.Instance.ProxyService != null)
+        {
+            string token = Plugin.Instance.ProxyService.GenerateToken(uri, config.TokenExpirationHours);
+            // Construire l'URL du proxy local
+            uri = $"/Xtream/Proxy/{token}";
+        }
+
         bool isLive = type == StreamType.Live;
         return new MediaSourceInfo()
         {

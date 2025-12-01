@@ -31,6 +31,7 @@ public class PluginServiceRegistrator : IPluginServiceRegistrator
     public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
     {
         serviceCollection.AddSingleton<IXtreamClient, XtreamClient>();
+        serviceCollection.AddSingleton<Jellyfin.Xtream.Service.StreamProxyService>();
         serviceCollection.AddSingleton<ILiveTvService, LiveTvService>();
         serviceCollection.AddSingleton<IChannel, CatchupChannel>();
         serviceCollection.AddSingleton<IChannel, SeriesChannel>();

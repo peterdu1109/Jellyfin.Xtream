@@ -83,5 +83,25 @@ public class PluginConfiguration : BasePluginConfiguration
     /// Gets or sets the EPG cache duration in minutes.
     /// </summary>
     public int EpgCacheDurationMinutes { get; set; } = 60;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to use secure proxy for streams.
+    /// </summary>
+    public bool UseSecureProxy { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the token expiration duration in hours.
+    /// </summary>
+    public int TokenExpirationHours { get; set; } = 24;
+
+    /// <summary>
+    /// Gets or sets the maximum number of concurrent streams (0 = unlimited).
+    /// </summary>
+    public int MaxConcurrentStreams { get; set; } = 0;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether detailed logging is enabled.
+    /// </summary>
+    public bool EnableDetailedLogging { get; set; } = false;
 }
 #pragma warning restore CA2227
