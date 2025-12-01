@@ -13,7 +13,7 @@
                 "changelog": "🔒 SÉCURITÉ MAJEURE - Version 0.9.0.0:\n\n- Système de proxy sécurisé masquant les credentials\n- Génération de tokens temporaires avec expiration automatique\n- Interface de monitoring et statistiques des tokens\n- Configuration avancée : limite de streams, logging détaillé\n- Résolution complète du problème de confidentialité\n- Backward compatible (proxy désactivable)\n\nVersion 0.8.0.0:\n- Dossiers \"Derniers Films\" et \"Dernières Séries\"\n- Cache EPG configurable\n- Logique de réessai automatique\n- Interface française complète",
                 "targetAbi": "10.11.0.0",
                 "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Xtream/releases/download/v0.9.0.0/Jellyfin.Xtream.zip",
-                "checksum": "sha256:d1260c6fffb227d1a5c6065632633042d4ba74697c1a065ddd7c3d54be301d1f",
+                "checksum": "187027BFEF48148B54D616E0C06C8411",
                 "timestamp": "2025-12-01T10:00:00Z"
             },
             {
