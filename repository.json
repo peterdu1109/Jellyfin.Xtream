@@ -6,7 +6,7 @@
         "overview": "Diffusez du contenu depuis un serveur compatible Xtream.",
         "owner": "peterdu1109",
         "category": "Live TV",
-        "imageUrl": "https://raw.githubusercontent.com/peterdu1109/Jellyfin.Xtream/master/logo.png",
+        "imageUrl": "https://github.com/peterdu1109/Jellyfin.Xtream/blob/master/logo.png",
         "versions": [
             {
                 "version": "0.9.0.0",
