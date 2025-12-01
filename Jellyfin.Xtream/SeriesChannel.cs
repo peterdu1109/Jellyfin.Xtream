@@ -38,10 +38,10 @@ namespace Jellyfin.Xtream;
 public class SeriesChannel(ILogger<SeriesChannel> logger) : IChannel, IDisableMediaSourceDisplay
 {
     /// <inheritdoc />
-    public string? Name => "Xtream Series";
+    public string? Name => "Xtream Séries";
 
     /// <inheritdoc />
-    public string? Description => "Series streamed from the Xtream-compatible server.";
+    public string? Description => "Séries diffusées depuis le serveur compatible Xtream.";
 
     /// <inheritdoc />
     public string DataVersion => Plugin.Instance.DataVersion;
@@ -270,7 +270,7 @@ public class SeriesChannel(ILogger<SeriesChannel> logger) : IChannel, IDisableMe
         items.Insert(0, new ChannelItemInfo
         {
             Id = StreamService.ToGuid(StreamService.SeriesCategoryPrefix, -1, 0, 0).ToString(),
-            Name = "Latest Series",
+            Name = "Dernières Séries",
             Type = ChannelItemType.Folder,
             FolderType = ChannelFolderType.Container
         });

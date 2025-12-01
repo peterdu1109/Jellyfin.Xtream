@@ -46,7 +46,7 @@ namespace Jellyfin.Xtream;
 public class LiveTvService(IServerApplicationHost appHost, IHttpClientFactory httpClientFactory, ILogger<LiveTvService> logger, IMemoryCache memoryCache, IXtreamClient xtreamClient) : ILiveTvService, ISupportsDirectStreamProvider
 {
     /// <inheritdoc />
-    public string Name => "Xtream Live";
+    public string Name => "Xtream Direct";
 
     /// <inheritdoc />
     public string HomePageUrl => string.Empty;

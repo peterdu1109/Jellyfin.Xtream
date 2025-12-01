@@ -41,10 +41,10 @@ public class CatchupChannel(ILogger<CatchupChannel> logger, IXtreamClient xtream
     private readonly ILogger<CatchupChannel> _logger = logger;
 
     /// <inheritdoc />
-    public string? Name => "Xtream Catch-up";
+    public string? Name => "Xtream Rattrapage";
 
     /// <inheritdoc />
-    public string? Description => "Rewatch IPTV streamed from the Xtream-compatible server.";
+    public string? Description => "Revoir l'IPTV diffusée depuis le serveur compatible Xtream.";
 
     /// <inheritdoc />
     public string DataVersion => Plugin.Instance.DataVersion + DateTime.Today.ToShortDateString();

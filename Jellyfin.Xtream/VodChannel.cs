@@ -38,10 +38,10 @@ namespace Jellyfin.Xtream;
 public class VodChannel(ILogger<VodChannel> logger) : IChannel, IDisableMediaSourceDisplay
 {
     /// <inheritdoc />
-    public string? Name => "Xtream Video On-Demand";
+    public string? Name => "Xtream Vidéo à la demande";
 
     /// <inheritdoc />
-    public string? Description => "Video On-Demand streamed from the Xtream-compatible server.";
+    public string? Description => "Vidéo à la demande diffusée depuis le serveur compatible Xtream.";
 
     /// <inheritdoc />
     public string DataVersion => Plugin.Instance.DataVersion;
@@ -183,7 +183,7 @@ public class VodChannel(ILogger<VodChannel> logger) : IChannel, IDisableMediaSou
         items.Insert(0, new ChannelItemInfo
         {
             Id = StreamService.ToGuid(StreamService.VodCategoryPrefix, -1, 0, 0).ToString(),
-            Name = "Latest Movies",
+            Name = "Derniers Films",
             Type = ChannelItemType.Folder,
             FolderType = ChannelFolderType.Container
         });
