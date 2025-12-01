@@ -1,0 +1,21 @@
+[
+    {
+        "guid": "5d774c35-8567-46d3-a950-9bb8227a0c5d",
+        "name": "Jellyfin Xtream",
+        "description": "Diffusez la télévision en direct, la vidéo à la demande et les séries depuis un serveur compatible Xtream.",
+        "overview": "Diffusez du contenu depuis un serveur compatible Xtream.",
+        "owner": "peterdu1109",
+        "category": "Live TV",
+        "imageUrl": "https://raw.githubusercontent.com/peterdu1109/Jellyfin.Xtream/master/logo.png",
+        "versions": [
+            {
+                "version": "0.8.0.0",
+                "changelog": "Mise à jour avec traduction française et nouvelles fonctionnalités:\n- Ajout des dossiers \"Derniers Films\" et \"Dernières Séries\"\n- Cache EPG configurable (par défaut 60 minutes)\n- Logique de réessai automatique pour les appels API\n- Interface utilisateur entièrement traduite en français\n- Corrections diverses et améliorations de stabilité",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Xtream/releases/download/v0.8.0.0/Jellyfin.Xtream.dll",
+                "checksum": "CHECKSUM_PLACEHOLDER",
+                "timestamp": "2025-12-01T09:00:00Z"
+            }
+        ]
+    }
+]

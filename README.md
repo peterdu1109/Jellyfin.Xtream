@@ -1,9 +1,9 @@
 # Jellyfin.Xtream
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Kevinjil/Jellyfin.Xtream/total)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/Kevinjil/Jellyfin.Xtream/latest/total)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/Kevinjil/Jellyfin.Xtream/latest)
-![Dynamic YAML Badge](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2FKevinjil%2FJellyfin.Xtream%2Frefs%2Fheads%2Fmaster%2Fbuild.yaml&query=targetAbi&label=Jellyfin%20ABI)
-![Dynamic YAML Badge](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2FKevinjil%2FJellyfin.Xtream%2Frefs%2Fheads%2Fmaster%2Fbuild.yaml&query=framework&label=.NET%20framework)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/peterdu1109/Jellyfin.Xtream/total)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/peterdu1109/Jellyfin.Xtream/latest/total)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/peterdu1109/Jellyfin.Xtream/latest)
+![Dynamic YAML Badge](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpeterdu1109%2FJellyfin.Xtream%2Frefs%2Fheads%2Fmaster%2Fbuild.yaml&query=targetAbi&label=Jellyfin%20ABI)
+![Dynamic YAML Badge](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpeterdu1109%2FJellyfin.Xtream%2Frefs%2Fheads%2Fmaster%2Fbuild.yaml&query=framework&label=.NET%20framework)
 
 Le plugin Jellyfin.Xtream permet d'intégrer le contenu fourni par une [API compatible Xtream](https://xtream-ui.org/api-xtreamui-xtreamcode/) dans votre instance [Jellyfin](https://jellyfin.org/).
 
@@ -26,7 +26,7 @@ Pour ajouter le dépôt, suivez ces étapes :
 2. Sélectionnez l'onglet `Repositories` en haut de la page.
 3. Cliquez sur le symbole `+` pour ajouter un dépôt.
 4. Entrez `Jellyfin.Xtream` comme nom de dépôt.
-5. Entrez [`https://kevinjil.github.io/Jellyfin.Xtream/repository.json`](https://kevinjil.github.io/Jellyfin.Xtream/repository.json) comme URL du dépôt.
+5. Entrez [`https://peterdu1109.github.io/Jellyfin.Xtream/repository.json`](https://peterdu1109.github.io/Jellyfin.Xtream/repository.json) comme URL du dépôt.
 6. Cliquez sur sauvegarder.
 
 Pour installer ou mettre à jour le plugin, suivez ces étapes :
