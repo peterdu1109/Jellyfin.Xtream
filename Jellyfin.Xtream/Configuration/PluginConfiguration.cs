@@ -78,5 +78,10 @@ public class PluginConfiguration : BasePluginConfiguration
     /// Gets or sets the channel override configuration for Live TV.
     /// </summary>
     public SerializableDictionary<int, ChannelOverrides> LiveTvOverrides { get; set; } = [];
+
+    /// <summary>
+    /// Gets or sets the EPG cache duration in minutes.
+    /// </summary>
+    public int EpgCacheDurationMinutes { get; set; } = 60;
 }
 #pragma warning restore CA2227

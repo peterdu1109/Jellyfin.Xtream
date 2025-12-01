@@ -97,8 +97,14 @@ public class VodChannel(ILogger<VodChannel> logger) : IChannel, IDisableMediaSou
 
             Guid guid = Guid.Parse(query.FolderId);
             StreamService.FromGuid(guid, out int prefix, out int categoryId, out int _, out int _);
+
             if (prefix == StreamService.VodCategoryPrefix)
             {
+                if (categoryId == -1) // Latest
+                {
+                    return await GetLatest(cancellationToken).ConfigureAwait(false);
+                }
+
                 return await GetStreams(categoryId, cancellationToken).ConfigureAwait(false);
             }
 
@@ -112,6 +118,28 @@ public class VodChannel(ILogger<VodChannel> logger) : IChannel, IDisableMediaSou
             logger.LogError(ex, "Failed to get channel items");
             throw;
         }
+    }
+
+    private async Task<ChannelItemResult> GetLatest(CancellationToken cancellationToken)
+    {
+        // Get latest across all categories
+        var categories = await Plugin.Instance.StreamService.GetVodCategories(cancellationToken).ConfigureAwait(false);
+        var allStreams = new List<StreamInfo>();
+
+        foreach (var category in categories)
+        {
+            var streams = await Plugin.Instance.StreamService.GetVodStreams(category.CategoryId, cancellationToken).ConfigureAwait(false);
+            allStreams.AddRange(streams);
+        }
+
+        var latest = StreamService.GetLatestStreams(allStreams);
+        List<ChannelItemInfo> items = [.. await Task.WhenAll(latest.Select(CreateChannelItemInfo)).ConfigureAwait(false)];
+
+        return new ChannelItemResult
+        {
+            Items = items,
+            TotalRecordCount = items.Count
+        };
     }
 
     private Task<ChannelItemInfo> CreateChannelItemInfo(StreamInfo stream)
@@ -150,6 +178,16 @@ public class VodChannel(ILogger<VodChannel> logger) : IChannel, IDisableMediaSou
         IEnumerable<Category> categories = await Plugin.Instance.StreamService.GetVodCategories(cancellationToken).ConfigureAwait(false);
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
             categories.Select((Category category) => StreamService.CreateChannelItemInfo(StreamService.VodCategoryPrefix, category)));
+
+        // Add "Latest" folder
+        items.Insert(0, new ChannelItemInfo
+        {
+            Id = StreamService.ToGuid(StreamService.VodCategoryPrefix, -1, 0, 0).ToString(),
+            Name = "Latest Movies",
+            Type = ChannelItemType.Folder,
+            FolderType = ChannelFolderType.Container
+        });
+
         return new()
         {
             Items = items,

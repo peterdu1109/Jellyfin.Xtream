@@ -446,4 +446,62 @@ public partial class StreamService(IXtreamClient xtreamClient)
 
     [GeneratedRegex(@"\[([^\]]+)\]|\|([^\|]+)\|")]
     private static partial Regex TagRegex();
+
+    /// <summary>
+    /// Filters streams by search term.
+    /// </summary>
+    /// <param name="streams">The streams to filter.</param>
+    /// <param name="searchTerm">The search term.</param>
+    /// <returns>Filtered streams.</returns>
+    public static IEnumerable<StreamInfo> SearchStreams(IEnumerable<StreamInfo> streams, string? searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            return streams;
+        }
+
+        return streams.Where(s => s.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+    }
+
+    /// <summary>
+    /// Gets the latest streams.
+    /// </summary>
+    /// <param name="streams">The streams to sort.</param>
+    /// <param name="count">The number of streams to return.</param>
+    /// <returns>Latest streams.</returns>
+    public static IEnumerable<StreamInfo> GetLatestStreams(IEnumerable<StreamInfo> streams, int count = 20)
+    {
+        return streams
+            .OrderByDescending(s => long.TryParse(s.Added, out long added) ? added : 0)
+            .Take(count);
+    }
+
+    /// <summary>
+    /// Filters series by search term.
+    /// </summary>
+    /// <param name="series">The series to filter.</param>
+    /// <param name="searchTerm">The search term.</param>
+    /// <returns>Filtered series.</returns>
+    public static IEnumerable<Series> SearchSeries(IEnumerable<Series> series, string? searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            return series;
+        }
+
+        return series.Where(s => s.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+    }
+
+    /// <summary>
+    /// Gets the latest series.
+    /// </summary>
+    /// <param name="series">The series to sort.</param>
+    /// <param name="count">The number of series to return.</param>
+    /// <returns>Latest series.</returns>
+    public static IEnumerable<Series> GetLatestSeries(IEnumerable<Series> series, int count = 20)
+    {
+        return series
+            .OrderByDescending(s => s.LastModified)
+            .Take(count);
+    }
 }

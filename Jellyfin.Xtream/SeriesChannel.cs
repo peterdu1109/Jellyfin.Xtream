@@ -100,6 +100,11 @@ public class SeriesChannel(ILogger<SeriesChannel> logger) : IChannel, IDisableMe
             StreamService.FromGuid(guid, out int prefix, out int categoryId, out int seriesId, out int seasonId);
             if (prefix == StreamService.SeriesCategoryPrefix)
             {
+                if (categoryId == -1) // Latest
+                {
+                    return await GetLatest(cancellationToken).ConfigureAwait(false);
+                }
+
                 return await GetSeries(categoryId, cancellationToken).ConfigureAwait(false);
             }
 
@@ -122,6 +127,28 @@ public class SeriesChannel(ILogger<SeriesChannel> logger) : IChannel, IDisableMe
         return new ChannelItemResult()
         {
             TotalRecordCount = 0,
+        };
+    }
+
+    private async Task<ChannelItemResult> GetLatest(CancellationToken cancellationToken)
+    {
+        // Get latest across all categories
+        var categories = await Plugin.Instance.StreamService.GetSeriesCategories(cancellationToken).ConfigureAwait(false);
+        var allSeries = new List<Series>();
+
+        foreach (var category in categories)
+        {
+            var series = await Plugin.Instance.StreamService.GetSeries(category.CategoryId, cancellationToken).ConfigureAwait(false);
+            allSeries.AddRange(series);
+        }
+
+        var latest = StreamService.GetLatestSeries(allSeries);
+        List<ChannelItemInfo> items = new(latest.Select(CreateChannelItemInfo));
+
+        return new ChannelItemResult
+        {
+            Items = items,
+            TotalRecordCount = items.Count
         };
     }
 
@@ -238,6 +265,16 @@ public class SeriesChannel(ILogger<SeriesChannel> logger) : IChannel, IDisableMe
         IEnumerable<Category> categories = await Plugin.Instance.StreamService.GetSeriesCategories(cancellationToken).ConfigureAwait(false);
         List<ChannelItemInfo> items = new(
             categories.Select((Category category) => StreamService.CreateChannelItemInfo(StreamService.SeriesCategoryPrefix, category)));
+
+        // Add "Latest" folder
+        items.Insert(0, new ChannelItemInfo
+        {
+            Id = StreamService.ToGuid(StreamService.SeriesCategoryPrefix, -1, 0, 0).ToString(),
+            Name = "Latest Series",
+            Type = ChannelItemType.Folder,
+            FolderType = ChannelFolderType.Container
+        });
+
         return new()
         {
             Items = items,

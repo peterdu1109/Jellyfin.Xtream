@@ -189,7 +189,7 @@ public class LiveTvService(IServerApplicationHost appHost, IHttpClientFactory ht
                 }
             }
 
-            memoryCache.Set(key, items, DateTimeOffset.Now.AddMinutes(10));
+            memoryCache.Set(key, items, DateTimeOffset.Now.AddMinutes(plugin.Configuration.EpgCacheDurationMinutes));
         }
 
         return from epg in items

@@ -108,8 +108,31 @@ public class XtreamClient(HttpClient client, ILogger<XtreamClient> logger) : IDi
     private async Task<T> QueryApi<T>(ConnectionInfo connectionInfo, string urlPath, CancellationToken cancellationToken)
     {
         Uri uri = new Uri(connectionInfo.BaseUrl + urlPath);
-        string jsonContent = await client.GetStringAsync(uri, cancellationToken).ConfigureAwait(false);
-        return JsonConvert.DeserializeObject<T>(jsonContent, _serializerSettings)!;
+        int retryCount = 0;
+        int maxRetries = 3;
+        int delay = 1000;
+
+        while (true)
+        {
+            try
+            {
+                string jsonContent = await client.GetStringAsync(uri, cancellationToken).ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<T>(jsonContent, _serializerSettings)!;
+            }
+            catch (HttpRequestException ex)
+            {
+                if (retryCount >= maxRetries)
+                {
+                    logger.LogError(ex, "Failed to query API after {RetryCount} retries", retryCount);
+                    throw;
+                }
+
+                logger.LogWarning(ex, "Failed to query API, retrying in {Delay}ms", delay);
+                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+                retryCount++;
+                delay *= 2;
+            }
+        }
     }
 
     public Task<PlayerApi> GetUserAndServerInfoAsync(ConnectionInfo connectionInfo, CancellationToken cancellationToken) =>
