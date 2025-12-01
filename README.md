@@ -81,13 +81,43 @@ Les identifiants suivants doivent être correctement définis dans l'onglet de c
 2. Activez `Show the catch-up channel to users`.
 3. Cliquez sur `Save` en bas de la page.
 
+### Sécurité
+
+1. Ouvrez l'onglet de configuration `Sécurité`.
+2. **Proxy sécurisé** : Le proxy est activé par défaut pour protéger vos identifiants.
+3. Ajustez la **durée d'expiration des tokens** si nécessaire (24 heures par défaut).
+4. Configurez les **limites de streams** si vous souhaitez limiter les connexions simultanées.
+5. Cliquez sur `Save` en bas de la page.
+
+## Fonctionnalités Avancées
+
+### Proxy Sécurisé 🔒
+
+La version 0.9.0.0 introduit un système de proxy sécurisé qui **résout le problème de confidentialité** :
+
+- ✅ Les identifiants ne sont plus visibles dans les URLs de stream
+- ✅ Génération de tokens temporaires sécurisés
+- ✅ Expiration automatique des tokens (configurable)
+- ✅ Sûr pour les serveurs partagés
+
+**Comment ça marche :**
+Le plugin génère un token unique pour chaque stream qui mappe vers l'URL réelle. Les utilisateurs voient uniquement `/Xtream/Proxy/{token}` au lieu de l'URL complète avec credentials.
+
+### Statistiques
+
+Consultez les statistiques du proxy dans l'onglet **Sécurité** :
+- Nombre de tokens actifs
+- Nettoyage manuel des tokens expirés
+
 ## Problèmes connus
 
-### Perte de confidentialité
+### Perte de confidentialité (RÉSOLU ✅)
 
-Jellyfin publie les chemins distants dans l'API et dans l'interface utilisateur par défaut.
+~~Jellyfin publie les chemins distants dans l'API et dans l'interface utilisateur par défaut.
 Comme le format Xtream pour les chemins distants inclut le nom d'utilisateur et le mot de passe, toute personne ayant accès à la bibliothèque aura accès à vos identifiants.
-Utilisez ce plugin avec précaution sur les serveurs partagés.
+Utilisez ce plugin avec précaution sur les serveurs partagés.~~
+
+**Ce problème est résolu dans la version 0.9.0.0** grâce au système de proxy sécurisé. Si vous souhaitez l'ancien comportement, vous pouvez désactiver le proxy dans les paramètres de sécurité (non recommandé).
 
 ## Dépannage
 
@@ -106,6 +136,15 @@ Le plugin inclut désormais une logique de réessai automatique qui tentera de s
 - Les journaux Jellyfin pour plus de détails
 
 ## Changelog
+
+### Version 0.9.0.0 🔒
+
+- 🔒 **SÉCURITÉ MAJEURE**: Système de proxy sécurisé masquant les credentials
+- ✨ Génération de tokens temporaires avec expiration automatique
+- 📊 Interface de monitoring et statistiques des tokens
+- ⚙️ Configuration avancée : limite de streams, logging détaillé
+- 🛡️ Résolution complète du problème de confidentialité
+- ✅ Backward compatible (proxy désactivable)
 
 ### Version 0.8.0.0
 

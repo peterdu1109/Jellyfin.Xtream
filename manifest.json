@@ -8,12 +8,12 @@
     "category": "Live TV",
     "versions": [
       {
-        "version": "0.8.0.0",
-        "changelog": "Mise à jour initiale avec traduction française et nouvelles fonctionnalités (Cache EPG, Logique de réessai, Dossiers Derniers ajouts).",
+        "version": "0.9.0.0",
+        "changelog": "🔒 SÉCURITÉ MAJEURE - Système de proxy sécurisé masquant les credentials, tokens temporaires, monitoring, configuration avancée. Résolution complète du problème de confidentialité.",
         "targetAbi": "10.11.0.0",
-        "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Xtream/releases/download/v0.8.0.0/Jellyfin.Xtream.dll",
+        "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Xtream/releases/download/v0.9.0.0/Jellyfin.Xtream.dll",
         "checksum": "CHECKSUM_PLACEHOLDER",
-        "timestamp": "2025-12-01T00:00:00Z"
+        "timestamp": "2025-12-01T10:00:00Z"
       }
     ]
   }
